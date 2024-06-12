@@ -58,9 +58,8 @@ p
 import pandas as pd
 df = pd.read_csv("example_data/betaLactamase_enrichmentScores.csv")
 minenrichment = 1.0e-4 # minimum allowed enrichment
-df["preference"] = [max(minenrichment, (10**df["Trial_1_AmpConc_2500"][x] + 10**df["Trial_1_AmpConc_2500"][x])/2) for x in range(len(df))]
-df = df.pivot(index = "Site", columns = "AminoAcid", values = "preference")
-df.fillna(1, inplace = True)
+df["preference"] = [max(minenrichment, (10**df["Trial_1_AmpConc_2500"][x] + 10**df["Trial_2_AmpConc_2500.1"][x])/2) for x in range(len(df))]
+df = df.pivot(index = "Site", columns = "AminoAcid", values = "preference")2df.fillna(1, inplace = True)
 df = df.div(df.sum(axis=1), axis=0)
 df.insert(0, "site", range(1,len(df)+1))
 df.to_csv("example_data/betaLactamase_prefs.csv", index = False)
